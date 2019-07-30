@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		.container{
+			width: 300px;
+			height: 300px;
+			/*border: 1px solid #000;*/
+			margin: 150px auto;
+			perspective: 2000000px;
+			
+		}
+		.box{
+			width:300px;
+			height:300px;
+			/*contral child*/
+			transform-style: preserve-3d;
+			/*transform: rotateX(45deg) rotateY(45deg);*/
+			animation: rotate 4s linear infinite;
+		}
+		@keyframes rotate{
+			0%{
+				transform: rotateX(0deg) rotateY(0deg);
+			}
+			100%{
+				transform: rotateX(360deg) rotateY(360deg);
+			}
+
+		}
+		.box-page{
+			width: 300px;
+			height: 300px;
+			/*位置*/
+			position: absolute;
+			transform-style: preserve-3d;
+		}
+		.top{
+			/*background-color: black;*/
+			transform: translateZ(150px);
+		}
+		.bottom{
+			/*background-color: blue;*/
+			transform: translateZ(-150px) rotateX(180deg);
+		}
+		.left{
+			/*background-color: pink;*/
+			transform: translateX(-150px) rotateY(-90deg);
+		}
+		.right{
+			/*background-color: red;*/
+			transform: translateX(150px) rotateY(90deg);
+		}
+		.before{
+			/*background-color: yellow;*/
+			transform: translateY(150px) rotateX(-90deg);
+		}
+		.after{
+			/*background-color: orange;*/
+			transform: translateY(-150px) rotateX(90deg);
+		}
+		@keyframes r1{
+			0%{
+				transform:  scale(1) rotateZ(0deg) rotateX(0deg) ;
+			}
+			20%{
+				transform:  scale(0) rotateZ(720deg) rotateX(720deg) ;
+			}
+			90%{
+				transform:  scale(0) rotateZ(720deg) rotateX(720deg) ;
+			}
+
+			100%{
+				transform:  scale(1) rotateZ(0deg) rotateX(0deg) );
+			}
+		}
+		.box-page div:nth-child(1){
+			animation: r1 6s ease-in ;
+		}
+		.box-page div:nth-child(2){
+			animation: r1 6s ease-in 0.5s;
+		}
+		.box-page div:nth-child(3){
+			animation: r1 6s ease-in 1s;
+		}
+		.box-page div:nth-child(4){
+			animation: r1 6s ease-in 1.5s;
+		}
+		.box-page div:nth-child(5){
+			animation: r1 6s ease-in 2s;
+		}
+		.box-page div:nth-child(6){
+			animation: r1 6s ease-in 2.5s;
+		}
+		.box-page div:nth-child(7){
+			animation: r1 6s ease-in 3s;
+		}
+		.box-page div:nth-child(8){
+			animation: r1 6s ease-in 3.5s;
+		}
+		.box-page div:nth-child(9){
+			animation: r1 6s ease-in 4s;
+		}
+	</style>
+</head>
+<body>
+	<bgsound src="sound/1.mp3" autostart="ture" loop="infinite ">
+	<embed src="sound/1.mp3" width="0" height="0" border="0" loop="ture"></embed>
+	<div class="container">
+		<div class="box">
+			<div class="box-page top"></div>
+			<div class="box-page bottom"></div>
+			<div class="box-page left"></div>
+			<div class="box-page right"></div>
+			<div class="box-page before"></div>
+			<div class="box-page after"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+		var arr = document.querySelectorAll(".box-page");
+		document.write(arr.length);
+		// 遍历
+		for(var n=0; n<arr.length; n++)
+		{
+			// outcycle
+			for(var i=0; i<3; i++)
+			{
+				// incycle
+				for(var j=0; j<3; j++){
+					var divs = document.createElement("div");
+					divs.style.cssText = "width:100px;height: 100px; border:1px solid #fff; box-sizing: border-box; position: absolute; background-image: url(img/a"+n+".jpg); background-size: 300px 300px;";
+					arr[n].appendChild(divs);
+					divs.style.left = j*100 + "px";
+					divs.style.top = i*100 + "px";
+					divs.style.backgroundPositionX = -j*100 + "px";
+					divs.style.backgroundPositionY = -i*100 + "px";
+				}
+			}
+		}
+	</script>
+	
+</body>
+</html>
